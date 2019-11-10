@@ -10,7 +10,8 @@ class GameBase {
 protected:
 	vector<vector<char>> board;
 	int height, length;
-	char player;
+	string player;
+	int length;
 	vector<Move> XMoves;
 	vector<Move> OMoves;
 public:
