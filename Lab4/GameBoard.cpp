@@ -6,7 +6,7 @@
 using namespace std;
 
 
-TicTacToe::TicTacToe() {
+GameBase::GameBase() {
 	
 	height = boardHeight;
 	length = boardLen;
@@ -20,7 +20,7 @@ TicTacToe::TicTacToe() {
 	player = 'Y'; //we'll call the start "Y" just so that it's initialized, and account for this in our case switch
 }
 
-bool TicTacToe::draw() {
+bool GameBase::draw() {
 	for (int i = 1; i < height-1; ++i) {
 		for (int j = 1; j < length-1; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
 			if (board[i][j] == ' ') {
@@ -36,8 +36,8 @@ bool TicTacToe::draw() {
 	}
 }
 
-bool TicTacToe::done() {
-	//board[height][length]
+bool GameBase::done() {
+
 	for (int i = 1; i < height-1; ++i) {
 		if (board[i][1] == board[i][2] && board[i][2] == board[i][3] && board[i][1] != ' ') { //check the rows
 			return true;
@@ -60,7 +60,7 @@ bool TicTacToe::done() {
 
 }
 
-int TicTacToe::prompt(unsigned int& x, unsigned int& y) {
+int GameBase::prompt(unsigned int& x, unsigned int& y) {
 	string str;
 	bool good = false;
 	while (!good) {
@@ -89,7 +89,7 @@ int TicTacToe::prompt(unsigned int& x, unsigned int& y) {
 	return success;
 }
 
-int TicTacToe::turn() {
+int GameBase::turn() {
 	unsigned int x, y, cont;
 	unsigned int& xx = x;
 	unsigned int& yy = y;
@@ -135,7 +135,7 @@ int TicTacToe::turn() {
 	return success;
 }
 
-int TicTacToe::play() {
+int GameBase::play() {
 	cout << *this;
 	bool done = false; // we need our loop conditions
 	bool draw = false;
@@ -144,8 +144,8 @@ int TicTacToe::play() {
 	while (!done && !draw && gameState != quit) {
 		++turns;
 		gameState = turn();
-		done = TicTacToe::done(); //check our end conditions
-		draw = TicTacToe::draw();
+		done = GameBase::done(); //check our end conditions
+		draw = GameBase::draw();
 	}
 	if (done) {
 		char winner = this->player; //(*this).player
