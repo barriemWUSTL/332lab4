@@ -308,11 +308,11 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 		for (int c = 0; c < 5; c++)
 		{
 			int num = 4;
-			if (tt.board[num - r][c].length() == tt.longestLength)
-				s += tt.board[num - r][c] + " ";
+			if (tt.board[c][num - r].length() == tt.longestLength)
+				s += tt.board[c][num - r] + " ";
 			else
 			{
-				s += tt.board[num - r][c];
+				s += tt.board[c][num -r];
 				for (int i = 0; i < tt.longestLength; i++)
 					s += " ";
 			}
@@ -326,7 +326,7 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 
 shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
 	if (argc != 0) {
-		if (argv[1] == "TicTacToe") {
+		if ((string)argv[1] == "TicTacToe") {
 			//TicTacToe ttt = TicTacToe();
 			shared_ptr<GameBase> ttt = make_shared<TicTacToe>();
 			return ttt;
