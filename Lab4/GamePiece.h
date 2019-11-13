@@ -3,12 +3,12 @@
 using namespace std;
 
 struct GamePiece {
-	string name;
+	char name;
 	string icon;
 };
 
 struct Move {
-	char Player;
+	GamePiece Player;
 	unsigned int x;
 	unsigned int y;
 };
