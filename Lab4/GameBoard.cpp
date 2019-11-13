@@ -11,19 +11,19 @@ GameBase::GameBase() {
 	height = boardHeight;
 	length = boardLen;
 	for (int i = 0; i < height; ++i) { //generating the 2d array
-		vector<char> row; //the vector to act as the row
+		vector<GamePiece> row; //the vector to act as the row
 		for (int j = 0; j < length; ++j) {
-			row.push_back(' ');
+			row.push_back({' '," " });
 		}
 		board.push_back(row);
 	}
-	player = 'Y'; //we'll call the start "Y" just so that it's initialized, and account for this in our case switch
+	player.name = '0'; //we'll call the start "0" just so that it's initialized, and account for this in our case switch
 }
 
 bool GameBase::draw() {
 	for (int i = 1; i < height-1; ++i) {
 		for (int j = 1; j < length-1; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
-			if (board[i][j] == ' ') {
+			if (board[i][j].icon == " ") {
 				return false;
 			}
 		}
@@ -39,19 +39,19 @@ bool GameBase::draw() {
 bool GameBase::done() {
 
 	for (int i = 1; i < height-1; ++i) {
-		if (board[i][1] == board[i][2] && board[i][2] == board[i][3] && board[i][1] != ' ') { //check the rows
+		if (board[i][1].icon == board[i][2].icon && board[i][2].icon == board[i][3].icon && board[i][1].icon != " ") { //check the rows
 			return true;
 		}
 	}
 	for (int i = 1; i < length-1; ++i) {
-		if (board[1][i] == board[2][i] && board[2][i] == board[3][i] && board[1][i] != ' ') { //check the columns
+		if (board[1][i].icon == board[2][i].icon && board[2][i].icon == board[3][i].icon && board[1][i].icon != " ") { //check the columns
 			return true;
 		}
 	}
-	if (board[1][1] == board[2][2] && board[2][2] == board[3][3] && board[3][3] != ' ') { //checking the diagonals
+	if (board[1][1].icon == board[2][2].icon && board[2][2].icon == board[3][3].icon && board[3][3].icon != " ") { //checking the diagonals
 		return true;
 	}
-	else if (board[1][3] == board[2][2] && board[2][2] == board[3][1] && board[2][2] != ' ') { //more checking a diagonal
+	else if (board[1][3].icon == board[2][2].icon && board[2][2].icon == board[3][1].icon && board[2][2].icon != " ") { //more checking a diagonal
 		return true;
 	}
 	else {
@@ -93,16 +93,16 @@ int GameBase::turn() {
 	unsigned int x, y, cont;
 	unsigned int& xx = x;
 	unsigned int& yy = y;
-	this->player = switchPlayer(this->player); //switching the player
+	this->player.name = switchPlayer(this->player.name); //switching the player
 	bool valid = false;
 	while (!valid) {
 		cont = prompt(xx, yy); //prompting for the next move
 		if (cont == quit) {
 			return quit;
 		}
-		else if (board[y][x] == ' ') { //we're checking to see if the space is still open
+		else if (board[y][x].icon == " ") { //we're checking to see if the space is still open
 			board[y][x] = player; // setting the board
-			if (player == 'X') {
+			if (player.name == '1') {
 				Move XMove = { player, x, y }; //we're storing the move in the moves vector
 				XMoves.push_back(XMove);
 			}
@@ -119,14 +119,14 @@ int GameBase::turn() {
 		}
 	}
 	cout << *this << endl;
-	cout << "Player " << player << "'s moves: ";
-	if (player == 'X') {
+	cout << "Player " << player.name << "'s moves: ";
+	if (player.name == '1') {
 		for (int i = 0; i < XMoves.size(); ++i) {
 			cout << XMoves[i].x << ", " << XMoves[i].y << "; ";
 		}
 		cout << endl;
 	}
-	else if (player == 'O') {
+	else if (player.name == '2') {
 		for (int i = 0; i < OMoves.size(); ++i) {
 			cout << OMoves[i].x << ", " << OMoves[i].y << "; ";
 		}
@@ -148,8 +148,8 @@ int GameBase::play() {
 		draw = GameBase::draw();
 	}
 	if (done) {
-		char winner = this->player; //(*this).player
-		if (winner == 'X') {
+		char winner = this->player.name; //(*this).player
+		if (winner == '1') {
 			cout << turns << " turns were played. Player " << winner << " was victorious!" << endl; //some nice win messages
 			return success;
 		}
@@ -174,17 +174,17 @@ int GameBase::play() {
 //X gets to go first, which I chose arbitrarily
 char switchPlayer(char player) {
 	switch (player) {
-	case 'Y': //We're initializing player with Y so we have a set case to start with
-		player = 'X';
+	case '0': //We're initializing player with 0 so we have a set case to start with
+		player = '1';
 		break;
-	case 'X':
-		player = 'O'; //flip the players to change turns
+	case '1':
+		player = '2'; //flip the players to change turns
 		break;
-	case 'O':
-		player = 'X';
+	case '2':
+		player = '1';
 		break;
 	default:
-		player = 'X'; //X is very lucky, if something goes wrong they go.
+		player = '1'; //1 is very lucky, if something goes wrong they go.
 		break;
 	}
 	return player;
@@ -208,4 +208,14 @@ ostream& operator<<(ostream& cout, const TicTacToe& ttt) {
 		cout << " " << i; //print out bottom axes
 	}
 	return cout;
+}
+
+GameBase gameType(int argc, char* argv[]) {
+	if (argc == 1) {
+		if (argv[1] == "TicTacToe") {
+			TicTacToe game;
+			return *game;
+		}
+	}
+
 }
