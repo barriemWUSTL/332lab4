@@ -9,10 +9,11 @@ enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b = 'B
 class GameBase {
 	//friend ostream &operator<<(ostream& cout, const GameBase& gb);
 	//friend ostream& operator<<(ostream& cout, TicTacToe const& tt);
+
 protected:
 	vector<vector<string>> board;
 	int height, length;
-	int longestLength;
+	size_t longestLength;
 	string player;
 	int lastRow;
 	int lastCol;

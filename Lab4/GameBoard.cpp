@@ -19,6 +19,7 @@ TicTacToe::TicTacToe() {
 		board.push_back(row);
 	}
 	player = "Y"; //we'll call the start "Y" just so that it's initialized, and account for this in our case switch
+	longestLength = player.length();
 }
 
 
@@ -306,11 +307,12 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 		s += to_string(4 - r);
 		for (int c = 0; c < 5; c++)
 		{
-			if (tt.board[4 - r][c].length() == tt.longestLength)
-				s += tt.board[4 - r][c] + " ";
+			int num = 4;
+			if (tt.board[num - r][c].length() == tt.longestLength)
+				s += tt.board[num - r][c] + " ";
 			else
 			{
-				s += tt.board[4 - r][c];
+				s += tt.board[num - r][c];
 				for (int i = 0; i < tt.longestLength; i++)
 					s += " ";
 			}
