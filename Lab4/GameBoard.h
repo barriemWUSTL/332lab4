@@ -4,7 +4,7 @@
 #include "GamePiece.h"
 using namespace std;
 //char switchPlayer(char player);
-enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b = 'B', w = 'W' };
+enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b='b', w='w'  };
 
 class GameBase {
 	//friend ostream &operator<<(ostream& cout, const GameBase& gb);
@@ -21,6 +21,7 @@ protected:
 	vector<Move> XMoves;
 	vector<Move> OMoves;
 public:
+	string name;
 	static shared_ptr<GameBase> pointer(int argc, char* argv[]);
 	virtual bool draw() = 0;
 	virtual bool done() = 0;

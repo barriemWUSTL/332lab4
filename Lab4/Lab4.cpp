@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
 	//}
 	shared_ptr<GameBase> game = GameBase::pointer(argc, argv);
 	if(game != 0) {
+		game->name = argv[inputName];
 		int gameState = game->play();
 		return gameState;
 	}

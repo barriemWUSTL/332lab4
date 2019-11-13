@@ -18,7 +18,7 @@ TicTacToe::TicTacToe() {
 		}
 		board.push_back(row);
 	}
-	player = "Y"; //we'll call the start "Y" just so that it's initialized, and account for this in our case switch
+	player = "x"; //we'll call the start "Y" just so that it's initialized, and account for this in our case switch
 	longestLength = player.length();
 }
 
@@ -102,7 +102,7 @@ int TicTacToe::turn() {
 	int res = prompt(r, c);
 	if (res == quit)
 		return quit; //user quit
-	while (res != success && res != quit)
+	while ((res != success || board[r][c] != " ") && res != quit)
 	{
 		res = prompt(r, c); //user input incorrectly formatted
 	}
@@ -177,29 +177,33 @@ int  GameBase::play() {
 	int numTurns = 0;
 	while (!done() && !draw()) //while the game isn't over, continue
 	{
-		if (player[pieceTurnIndex] == x) //switch piece playing to alternate turn and update variable keeping track of longest piece length
-		{
-			player = o;
-			if (player.length() > longestLength)
-				longestLength = player.length();
+		if (name == "TicTacToe") {
+			if (player[pieceTurnIndex] == x) //switch piece playing to alternate turn and update variable keeping track of longest piece length
+			{
+				player = o;
+				if (player.length() > longestLength)
+					longestLength = player.length();
+			}
+			else
+			{
+				player = x;
+				if (player.length() > longestLength)
+					longestLength = player.length();
+			}
 		}
-		else if (player[pieceTurnIndex] == o)
+		else {
+		 if (player[pieceTurnIndex] == b)
 		{
-			player = x;
-			if (player.length() > longestLength)
-				longestLength = player.length();
-		}
-		else if (player[pieceTurnIndex] == b)
-		{
-			player = w;
-			if (player.length() > longestLength)
-				longestLength = player.length();
+		player = w;
+		if (player.length() > longestLength)
+			longestLength = player.length();
 		}
 		else
 		{
-			player = b;
-			if (player.length() > longestLength)
-				longestLength = player.length();
+		player = b;
+		if (player.length() > longestLength)
+			longestLength = player.length();
+		}
 		}
 		numTurns++;
 		int res = turn();
