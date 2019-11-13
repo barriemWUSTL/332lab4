@@ -1,33 +1,26 @@
 // Lab4.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-#include <iostream>
-#include <string>
-#include "exitCodes.h"
-#include "GameBoard.h"
+#include "Lab4.h"
 using namespace std;
 int usageMsg(char* str);
 
 int main(int argc, char* argv[])
 {
-	string s = "TicTacToe";
-	if (argc != indices::numberOfArgs) {
-		return usageMsg(argv[indices::programName]);
-	}
-
-	else if (argv[indices::inputName] == s) {
-		TicTacToe ttt;
-		int gameState = ttt.play();
+	
+	//string s = "TicTacToe";
+	//if (argc != indices::numberOfArgs) {
+	//	return usageMsg(argv[indices::programName]);
+	//}
+	shared_ptr<GameBase> game = GameBase::pointer(argc, argv);
+	if(game != 0) {
+		int gameState = game->play();
 		return gameState;
 	}
-	else {
-		return usageMsg(argv[indices::programName]);
-	}
+	//else {
+	//	return usageMsg(argv[indices::programName]);
+	//}
 }
 
-int usageMsg(char* str) {
-	cout << "usage:" << str << " <game name (eg, TicTacToe)>" << endl;
-	return wrongNumOfArgs;
-}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 

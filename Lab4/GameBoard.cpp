@@ -321,3 +321,16 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 	cout << s << endl;
 	return cout;
 }
+
+shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
+	if (argc != 0) {
+		if (argv[1] == "TicTacToe") {
+			//TicTacToe ttt = TicTacToe();
+			shared_ptr<GameBase> ttt = make_shared<TicTacToe>();
+			return ttt;
+		}
+	}
+	else {
+		return 0;
+	}
+}

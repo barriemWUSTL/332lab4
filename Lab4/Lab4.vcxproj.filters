@@ -32,5 +32,8 @@
     <ClInclude Include="GamePiece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Lab4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

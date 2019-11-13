@@ -20,7 +20,7 @@ protected:
 	vector<Move> XMoves;
 	vector<Move> OMoves;
 public:
-	static GameBase* pointer(int argc, char* argv[]);
+	static shared_ptr<GameBase> pointer(int argc, char* argv[]);
 	virtual bool draw() = 0;
 	virtual bool done() = 0;
 	virtual int turn() = 0;
@@ -31,8 +31,9 @@ public:
 
 class TicTacToe : public GameBase {
 	friend ostream& operator<<(ostream& cout, TicTacToe const& tt);
-	TicTacToe();
+	
 public:
+	TicTacToe();
 	void print() { cout << *this; }
 	virtual bool done();
 	virtual bool draw();
