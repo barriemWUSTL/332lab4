@@ -21,6 +21,9 @@
     <ClCompile Include="GameBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gomuko.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exitCodes.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lab4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gomuko.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
