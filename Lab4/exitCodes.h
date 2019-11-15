@@ -18,7 +18,9 @@ enum coordIndices {
 
 enum boardSize {
 	boardLen = 5,
-	boardHeight = 5
+	boardHeight = 5,
+	gBoardLen = 19,
+	gBoardHeight = 19
 };
 
 enum indices {
