@@ -11,10 +11,9 @@ enum exits {
 };
 
 enum coordIndices {
-	coordLen = 3,
+	coordLen = 2,
 	coordFirst = 0,
-	coordComma = 1,
-	coordSecond = 2
+	coordSecond = 1
 };
 
 enum boardSize {

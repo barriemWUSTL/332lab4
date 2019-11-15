@@ -1,4 +1,7 @@
+#include "GameBase.h"
 #include "TicTacToe.h"
+#include <string>
+
 
 int TicTacToe::turn() {
 	//tell the user who's turn it is
@@ -103,7 +106,7 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 			else
 			{
 				s += tt.board[c][num - r];
-				for (unsigned int i = 0; i < tt.longestLength; i++)
+				for (int i = 0; i < tt.longestLength; i++)
 					s += " ";
 			}
 		}

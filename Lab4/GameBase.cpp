@@ -1,13 +1,17 @@
+#include "GameBase.h"
 #include "GamePiece.h"
 #include "exitCodes.h"
 #include <vector>
 #include <iostream>
 #include "TicTacToe.h"
 #include "Gomoku.h"
+#include <sstream>
+
 using namespace std;
 
 
 int GameBase::prompt(unsigned int& x, unsigned int& y) {
+	std::vector<int> coords;
 	string str;
 	bool good = false;
 	while (!good) {
@@ -18,23 +22,53 @@ int GameBase::prompt(unsigned int& x, unsigned int& y) {
 			return quit; //send the signal to the main to quit
 		}
 		else {
-			if (str.length() != coordLen) { //the string length should be 3 if it's a proper coord, eg, 0,0
-				continue;			 //this also keeps people from doing tomfoolery like "20,19"
-			}
-			else if (str[coordFirst] >= '1' && str[coordFirst] <= '3') {
 
-				if (str[coordComma] == ',') {
-					if (str[coordSecond] >= '1' && str[coordSecond] <= '3') {
+			std::stringstream ss(str);
+
+			for (int i; ss >> i;) {
+				coords.push_back(i);
+				if (ss.peek() == ',' || ss.peek()==' ')
+					ss.ignore();
+			}
+			if (coords.size() != coordLen) {
+				cout << "Invalid coordinates, please reenter" << endl;
+				return invalidCoordinates;
+			}
+			else if (name == "TicTacToe") {
+				if (coords[coordFirst] >= 1 && coords[coordFirst] <= 3) {
+					if (coords[coordSecond] >= 1 && coords[coordSecond] <= 3) {
 						good = true;
 					}
+					else {
+						cout << "Invalid coordinates, please reenter" << endl;
+						return invalidCoordinates;
+					}
+				}
+				else {
+					cout << "Invalid coordinates, please reenter" << endl;
+					return invalidCoordinates;
 				}
 			}
-			cout << "Invalid coordinates, please reenter" << endl;
-			return invalidCoordinates;
-		}
+			else {
+				if (coords[coordFirst] >= 1 && coords[coordFirst] <= 19) {
+					if (coords[coordSecond] >= 1 && coords[coordSecond] <= 19) {
+						good = true;
+					}
+					else {
+						cout << "Invalid coordinates, please reenter" << endl;
+						return invalidCoordinates;
+					}
+				}
+				else {
+					cout << "Invalid coordinates, please reenter" << endl;
+					return invalidCoordinates;
+				}
+
+			}
+			}
 	}
-	x = str[coordFirst] - 48; //adjusting from a char to an int by subtracting 48, the ascii to int conversion of 0-9
-	y = str[coordSecond] - 48;
+		x = coords[coordFirst];
+		y = coords[coordSecond];
 	return success;
 }
 
@@ -109,4 +143,18 @@ shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
 	else {
 		return 0;
 	}
+}
+template <typename Out>
+void split(const std::string& s, char delim, Out result) {
+	std::istringstream iss(s);
+	std::string item;
+	while (std::getline(iss, item, delim)) {
+		*result++ = item;
+	}
+}
+
+std::vector<std::string> split(const std::string& s, char delim) {
+	std::vector<std::string> elems;
+	split(s, delim, std::back_inserter(elems));
+	return elems;
 }

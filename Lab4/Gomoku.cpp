@@ -1,6 +1,6 @@
 #include "Gomoku.h"
 
-
+using namespace std;
 Gomoku::Gomoku() {
 	string boardDisplay;
 	boardDisplay += blank;
@@ -56,7 +56,6 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 
 bool Gomoku::done() {
 	//check each row:
-	cout << "done start" << endl;
 	bool match = true;
 	for (int row = 0; row < 19; row++) {
 		for (int col = 0; col < 14; col++)
@@ -102,14 +101,12 @@ bool Gomoku::done() {
 			if (match) return true;
 		}
 	}
-	cout << "done finish" << endl;
 	return false;
 }
 
 bool Gomoku::draw() {
 	for (int i = 0; i < 19; ++i) {
 		for (int j = 0; j < 19; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
-			cout << "enter loop" << endl;
 			if (board[i][j] == " ") {
 				cout << board[i][j] << endl;
 				return false;
@@ -120,7 +117,6 @@ bool Gomoku::draw() {
 		return false;
 	}
 	else {
-		cout << "draw!" << endl;
 		return true;
 	}
 }

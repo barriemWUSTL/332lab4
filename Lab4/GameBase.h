@@ -2,9 +2,20 @@
 #include <vector>
 #include <ostream>
 #include "GamePiece.h"
+#include "exitCodes.h"
+#include <vector>
+#include <iostream>
+//#include "TicTacToe.h"
+//#include "Gomoku.h"
+#include<sstream>
+
+
 using namespace std;
 //char switchPlayer(char player);
 enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b='b', w='w'  };
+template <typename Out>
+void split(const std::string& s, char delim, Out result);
+std::vector<std::string> split(const std::string& s, char delim);
 
 class GameBase {
 	//friend ostream &operator<<(ostream& cout, const GameBase& gb);
