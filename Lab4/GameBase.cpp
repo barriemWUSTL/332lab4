@@ -98,9 +98,12 @@ shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
 			shared_ptr<GameBase> ttt = make_shared<TicTacToe>();
 			return ttt;
 		}
-		else if ((string)argv[1] == "Gomoku") {
-			shared_ptr<GameBase> gmk = make_shared<Gomoku>();
-			return gmk;
+		//else if ((string)argv[1] == "Gomoku") {
+		//	shared_ptr<GameBase> gmk = make_shared<Gomoku>();
+		//	return gmk;
+		//}
+		else {
+			return 0;
 		}
 	}
 	else {

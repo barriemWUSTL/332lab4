@@ -26,8 +26,7 @@ int main(int argc, char* argv[])
 		return gameState;
 	}
 	else {
-		int use = usageMsg(argv[indices::programName]);
-		return wrongTypeOfGame;
+		return usageMsg(wrongTypeOfGame);
 	}
 }
 

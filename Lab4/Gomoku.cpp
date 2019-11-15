@@ -1,4 +1,4 @@
-#include "Gomoku.h";
+#include "Gomoku.h"
 
 
 Gomoku::Gomoku() {
@@ -39,7 +39,7 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 			else
 			{
 				display += gm.board[gm.yDimensions - row][col];
-				for (int i = 0; i < gm.longestLength; i++)
+				for (unsigned int i = 0; i < gm.longestLength; i++)
 					display += " ";
 			}
 		}

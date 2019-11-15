@@ -103,7 +103,7 @@ ostream& operator<<(ostream& cout, TicTacToe const& tt) {
 			else
 			{
 				s += tt.board[c][num - r];
-				for (int i = 0; i < tt.longestLength; i++)
+				for (unsigned int i = 0; i < tt.longestLength; i++)
 					s += " ";
 			}
 		}

@@ -1,4 +1,5 @@
-#include "GameBase.h";
+#pragma once
+#include "GameBase.h"
 #include <iostream>
 #include "exitCodes.h"
 
