@@ -1,4 +1,4 @@
-#include "Gomuko.h";
+#include "Gomoku.h"
 
 
 Gomoku::Gomoku() {
@@ -112,4 +112,36 @@ bool Gomoku::draw() {
 	else {
 		return true;
 	}
+}
+
+int Gomoku::turn() {
+	//tell the user who's turn it is
+	std::cout << player + "\'s turn" << endl;
+	unsigned int r = 0;
+	unsigned int c = 0;
+	//prompt the user for input
+	int res = prompt(r, c);
+	if (res == quit)
+		return quit; //user quit
+	while ((res != success || board[r][c] != " ") && res != quit)
+	{
+		res = prompt(r, c); //user input incorrectly formatted
+	}
+	lastRow = r;
+	lastCol = c;
+	lastPiece = player;
+	board[r][c] = lastPiece; //place piece on board
+	print(); //print game board
+	cout << " " << endl;
+	if (player[pieceTurnIndex] == x) //add move to list of move for correct piece
+	{
+		xValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << xValidMoves << endl;
+	}
+	else
+	{
+		oValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << oValidMoves << endl;
+	}
+	return res;
 }

@@ -39,7 +39,7 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 			else
 			{
 				display += gm.board[gm.yDimensions - row][col];
-				for (unsigned int i = 0; i < gm.longestLength; i++)
+				for (int i = 0; i < gm.longestLength; i++)
 					display += " ";
 			}
 		}
@@ -54,3 +54,105 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 	return cout;
 }
 
+bool Gomoku::done() {
+	//check each row:
+	cout << "done start" << endl;
+	bool match = true;
+	for (int row = 0; row < 19; row++) {
+		for (int col = 0; col < 14; col++)
+		{
+			for (int i = 0; i < 5; i++) {
+				if (player != board[row][col + i])
+					match = false;
+			}
+			if (match) return true;
+		}
+	}
+	//check each column:
+	for (int col = 0; col < 19; col++) {
+		for (int row = 0; row < 14; row++)
+		{
+			for (int i = 0; i < 5; i++) {
+				if (player != board[row + i][col])
+					match = false;
+			}
+			if (match) return true;
+		}
+	}
+	//check diagonal lines from top-left to bottom-right
+	for (int col = 0; col < 14; col++) {
+		for (int row = 0; row < 14; row++) {
+			{
+				for (int i = 0; i < 5; i++) {
+					if (player != board[row + i][col + i])
+					match = false;
+				}
+				if (match) { return true; }
+			}
+		}
+	}
+	//lastly check diagonal lines from top-right to bottom-left
+	for (int col = 19; col > 4; --col) {
+		for (int row = 19; row > 4 ; --row)
+		{
+			for (int i = 0; i < 5; i++) {
+				if (player != board[row - i][col - i])
+					match = false;
+			}
+			if (match) return true;
+		}
+	}
+	cout << "done finish" << endl;
+	return false;
+}
+
+bool Gomoku::draw() {
+	for (int i = 0; i < 19; ++i) {
+		for (int j = 0; j < 19; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
+			cout << "enter loop" << endl;
+			if (board[i][j] == " ") {
+				cout << board[i][j] << endl;
+				return false;
+			}
+		}
+	}
+	if (done()) {
+		return false;
+	}
+	else {
+		cout << "draw!" << endl;
+		return true;
+	}
+}
+
+int Gomoku::turn() {
+	//tell the user who's turn it is
+	std::cout << player + "\'s turn" << endl;
+	unsigned int r = 0;
+	unsigned int c = 0;
+	//prompt the user for input
+	int res = prompt(r, c);
+	if (res == quit)
+		return quit; //user quit
+	while ((res != success || board[r][c] != " ") && res != quit)
+	{
+		res = prompt(r, c); //user input incorrectly formatted
+	}
+	lastRow = r;
+	lastCol = c;
+	lastPiece = player;
+	board[r][c] = lastPiece; //place piece on board
+	print(); //print game board
+	cout << " " << endl;
+	if (player[pieceTurnIndex] == x) //add move to list of move for correct piece
+	{
+		xValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << xValidMoves << endl;
+	}
+	else
+	{
+		oValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << oValidMoves << endl;
+	}
+	return res;
+}

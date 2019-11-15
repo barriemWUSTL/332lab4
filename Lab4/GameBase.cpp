@@ -75,7 +75,7 @@ int  GameBase::play() {
 		int res = turn();
 		if (res == quit) //user quit
 		{
-			cout << player + " quit the game in " + to_string(numTurns) + " turns!" << endl;
+			cout << player + " quit the game after " + to_string(numTurns) + " turns!" << endl;
 			return res;
 		}
 	}
@@ -85,7 +85,7 @@ int  GameBase::play() {
 	}
 	if (draw()) //game drew
 	{
-		cout <<  to_string(numTurns) + "turns were played. Unfortunately, a player chickened out and quit, ending the game prematurely" << endl;
+		cout <<  to_string(numTurns) + " turns were played. It was a draw, therefore both players are losers!" << endl;
 	}
 	return success; //error code 0, means the program executed successfully
 
@@ -98,10 +98,10 @@ shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
 			shared_ptr<GameBase> ttt = make_shared<TicTacToe>();
 			return ttt;
 		}
-		//else if ((string)argv[1] == "Gomoku") {
-		//	shared_ptr<GameBase> gmk = make_shared<Gomoku>();
-		//	return gmk;
-		//}
+		else if ((string)argv[1] == "Gomoku") {
+			shared_ptr<GameBase> gmk = make_shared<Gomoku>();
+			return gmk;
+		}
 		else {
 			return 0;
 		}
