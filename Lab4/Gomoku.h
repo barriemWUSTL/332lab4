@@ -6,7 +6,7 @@ using namespace std;
 
 
 class Gomoku : public GameBase {
-	friend ostream& operator<<(ostream& cout, Gomuku const& tt);
+	friend ostream& operator<<(ostream& cout, Gomoku const& tt);
 public:
 	Gomoku();
 	void print() { std::cout << *this; }

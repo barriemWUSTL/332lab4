@@ -1,7 +1,7 @@
-#include "Gomuko.h";
+#include "Gomoku.h";
 
 
-Gomuku::Gomuku() {
+Gomoku::Gomoku() {
 	string boardDisplay;
 	boardDisplay += blank;
 	int dimensions = 19;
@@ -27,7 +27,7 @@ Gomuku::Gomuku() {
 
 };
 
-ostream& operator<<(ostream& cout, Gomuku const& gm) {
+ostream& operator<<(ostream& cout, Gomoku const& gm) {
 	string display = "";
 	for (int row = 0; row < gm.yDimensions + 1; row++)
 	{

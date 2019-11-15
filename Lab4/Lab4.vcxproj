@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameBase.cpp" />
-    <ClCompile Include="Gomuko.cpp" />
+    <ClCompile Include="Gomoku.cpp" />
     <ClCompile Include="Lab4.cpp" />
     <ClCompile Include="TicTacToe.cpp" />
   </ItemGroup>
@@ -157,7 +157,7 @@
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GamePiece.h" />
-    <ClInclude Include="Gomuko.h" />
+    <ClInclude Include="Gomoku.h" />
     <ClInclude Include="Lab4.h" />
     <ClInclude Include="TicTacToe.h" />
   </ItemGroup>

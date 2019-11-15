@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include "TicTacToe.h"
+#include "Gomoku.h"
 using namespace std;
 
 
@@ -94,6 +95,10 @@ shared_ptr<GameBase> GameBase::pointer(int argc, char* argv[]) {
 			//TicTacToe ttt = TicTacToe();
 			shared_ptr<GameBase> ttt = make_shared<TicTacToe>();
 			return ttt;
+		}
+		else if ((string)argv[1] == "Gomoku") {
+			shared_ptr<GameBase> gmk = make_shared<Gomoku>();
+			return gmk;
 		}
 	}
 	else {
