@@ -6,7 +6,8 @@ enum exits {
 	wrongNumOfArgs = 3,
 	somethingWentWrong = 4,
 	allocationFail = 5,
-	wrongTypeOfGame = 6
+	wrongTypeOfGame = 6,
+	invalidCoordinates = 7
 };
 
 enum coordIndices {

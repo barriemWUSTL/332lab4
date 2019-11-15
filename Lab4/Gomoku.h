@@ -10,9 +10,9 @@ class Gomoku : public GameBase {
 public:
 	Gomoku();
 	void print() { std::cout << *this; }
-	virtual bool done();
-	virtual bool draw();
-	virtual int turn();
+	//virtual bool done();
+	//virtual bool draw();
+	//virtual int turn();
 
 
 private:

@@ -22,13 +22,15 @@ int GameBase::prompt(unsigned int& x, unsigned int& y) {
 				continue;			 //this also keeps people from doing tomfoolery like "20,19"
 			}
 			else if (str[coordFirst] >= '1' && str[coordFirst] <= '3') {
-				
+
 				if (str[coordComma] == ',') {
 					if (str[coordSecond] >= '1' && str[coordSecond] <= '3') {
 						good = true;
 					}
 				}
 			}
+			cout << "Invalid coordinates, please reenter" << endl;
+			return invalidCoordinates;
 		}
 	}
 	x = str[coordFirst] - 48; //adjusting from a char to an int by subtracting 48, the ascii to int conversion of 0-9
