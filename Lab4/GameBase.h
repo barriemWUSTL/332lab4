@@ -29,6 +29,6 @@ public:
 	virtual bool done() = 0;
 	virtual int turn() = 0;
 	virtual void print() = 0;
-	int prompt(unsigned int& x, unsigned int& y);
+	virtual int prompt(unsigned int& x, unsigned int& y);
 	int play();
 };
