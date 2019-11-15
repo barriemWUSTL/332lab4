@@ -4,7 +4,9 @@ enum exits {
 	quit = 1,
 	draw = 2,
 	wrongNumOfArgs = 3,
-	somethingWentWrong = 4
+	somethingWentWrong = 4,
+	allocationFail = 5,
+	wrongTypeOfGame = 6
 };
 
 enum coordIndices {

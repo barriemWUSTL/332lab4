@@ -9,18 +9,26 @@ int main(int argc, char* argv[])
 {
 	
 	//string s = "TicTacToe";
-	//if (argc != indices::numberOfArgs) {
-	//	return usageMsg(argv[indices::programName]);
-	//}
-	shared_ptr<GameBase> game = GameBase::pointer(argc, argv);
+	if (argc != indices::numberOfArgs) {
+		return usageMsg(argv[indices::programName]);
+	}
+	shared_ptr<GameBase> game;
+	try {
+		game = GameBase::pointer(argc, argv);
+	}
+	catch (exception e) {
+		cout << "Operation failed. Exception: " << e.what() << endl;
+		return allocationFail;
+	}
 	if(game != 0) {
 		game->name = argv[inputName];
 		int gameState = game->play();
 		return gameState;
 	}
-	//else {
-	//	return usageMsg(argv[indices::programName]);
-	//}
+	else {
+		int use = usageMsg(argv[indices::programName]);
+		return wrongTypeOfGame;
+	}
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
