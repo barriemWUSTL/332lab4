@@ -7,7 +7,6 @@ using namespace std;
 
 class Gomuku : public GameBase {
 	friend ostream& operator<<(ostream& cout, Gomuku const& tt);
-
 public:
 	Gomuku();
 	void print() { std::cout << *this; }

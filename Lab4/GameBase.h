@@ -18,6 +18,8 @@ protected:
 	int lastRow;
 	int lastCol;
 	string lastPiece;
+	int xDimensions; 
+	int yDimensions;
 	vector<Move> XMoves;
 	vector<Move> OMoves;
 public:
