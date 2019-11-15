@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <iostream>
+#include <ostream>
 #include "GamePiece.h"
 using namespace std;
 //char switchPlayer(char player);
