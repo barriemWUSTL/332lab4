@@ -18,8 +18,8 @@ public:
 
 
 private:
-	string xValidMoves;
-	string oValidMoves;
+	string bValidMoves;
+	string wValidMoves;
 
 };
 

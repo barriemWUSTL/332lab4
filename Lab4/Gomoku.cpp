@@ -15,11 +15,10 @@ Gomoku::Gomoku() {
 	player = w; //start with piece W
 	lastRow = 0; //initially no moves, used for efficiently checking game won
 	lastCol = 0; //initially no moves, used for efficiently checking game won
-	boardDisplay = w;
-	xValidMoves = "Player " + boardDisplay + ": ";
 	boardDisplay = b;
-	oValidMoves = "Player " + boardDisplay + ": ";
-	//winP = piecesInARow;
+	bValidMoves = "Player " + boardDisplay + ": ";
+	boardDisplay = w;
+	wValidMoves = "Player " + boardDisplay + ": ";
 	xDimensions = dimensions;
 	yDimensions = dimensions;
 	longestLength = player.length();
@@ -61,7 +60,7 @@ bool Gomoku::done() {
 		for (int col = 0; col < 14; col++)
 		{
 			for (int i = 0; i < 5; i++) {
-				if (player != board[row][col + i])
+				if (board[row][col] != board[row][col + i] || board[row][col] == " ")
 					match = false;
 			}
 			if (match) return true;
@@ -72,7 +71,7 @@ bool Gomoku::done() {
 		for (int row = 0; row < 14; row++)
 		{
 			for (int i = 0; i < 5; i++) {
-				if (player != board[row + i][col])
+				if (board[row][col] == board[row + i][col] || board[row][col]== " ")
 					match = false;
 			}
 			if (match) return true;
@@ -83,7 +82,7 @@ bool Gomoku::done() {
 		for (int row = 0; row < 14; row++) {
 			{
 				for (int i = 0; i < 5; i++) {
-					if (player != board[row + i][col + i])
+					if (board[row][col] != board[row + i][col + i] || board[row][col] == " ")
 					match = false;
 				}
 				if (match) { return true; }
@@ -95,7 +94,7 @@ bool Gomoku::done() {
 		for (int row = 19; row > 4 ; --row)
 		{
 			for (int i = 0; i < 5; i++) {
-				if (player != board[row - i][col - i])
+				if (board[row][col] != board[row - i][col - i] || board[row][col] == " ")
 					match = false;
 			}
 			if (match) return true;
@@ -130,7 +129,7 @@ int Gomoku::turn() {
 	int res = prompt(r, c);
 	if (res == quit)
 		return quit; //user quit
-	while ((res != success || board[r][c] != " ") && res != quit)
+	while ((res != success || board[c][r] != " ") && res != quit)
 	{
 		res = prompt(r, c); //user input incorrectly formatted
 	}
@@ -140,15 +139,16 @@ int Gomoku::turn() {
 	board[c][r] = lastPiece; //place piece on board
 	print(); //print game board
 	cout << " " << endl;
-	if (player[pieceTurnIndex] == x) //add move to list of move for correct piece
+	if (player[pieceTurnIndex] == b) //add move to list of move for correct piece
 	{
-		xValidMoves += to_string(r) + ", " + to_string(c) + "; ";
-		cout << xValidMoves << endl;
+		bValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << bValidMoves << endl;
 	}
-	else
+	else if(player[pieceTurnIndex] == w)
 	{
-		oValidMoves += to_string(r) + ", " + to_string(c) + "; ";
-		cout << oValidMoves << endl;
+		wValidMoves += to_string(r) + ", " + to_string(c) + "; ";
+		cout << wValidMoves << endl;
 	}
+
 	return res;
 }

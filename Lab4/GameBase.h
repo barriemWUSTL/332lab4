@@ -12,7 +12,7 @@
 
 using namespace std;
 //char switchPlayer(char player);
-enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b='b', w='w'  };
+enum TicTacToePieces { pieceTurnIndex = 0, x = 'X', o = 'O', blank = ' ', b='B', w='W'  };
 
 class GameBase {
 	//friend ostream &operator<<(ostream& cout, const GameBase& gb);
