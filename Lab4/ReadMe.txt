@@ -1,5 +1,8 @@
 Mustapha Barrie and Alex Chow Lab 4.
 
+We divided up the work based on who was more experienced with the components. The majority of setting up the classes was done by Alex, while Mustapha handled operators 
+and the tictactoe functions. We also split the gomoku operations.
+
 Errors: Arithmetic overflow Using operator "-"
 When going to TA office hours the TA said it would be okay if we left this warning.
 
@@ -34,4 +37,6 @@ O quit the game in 2 turns!
 
 
 
-Testing Gomuku: 
+Testing Gomuku:
+The done function refuses to work at this current point. 
+We're fairly sure that draw() works, and obviously turn works.

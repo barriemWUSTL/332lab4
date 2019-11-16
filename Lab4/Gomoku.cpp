@@ -54,13 +54,14 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 }
 
 bool Gomoku::done() {
+
 	//check each row:
 	bool match = true;
 	for (int row = 0; row < 19; row++) {
 		for (int col = 0; col < 14; col++)
 		{
 			for (int i = 0; i < 5; i++) {
-				if (board[row][col] != board[row][col + i] || board[row][col] == " ")
+				if (board[col][row] == board[row][col + i] ||  board[col][row] != " ")
 					match = false;
 			}
 			if (match) return true;
@@ -71,7 +72,7 @@ bool Gomoku::done() {
 		for (int row = 0; row < 14; row++)
 		{
 			for (int i = 0; i < 5; i++) {
-				if (board[row][col] == board[row + i][col] || board[row][col]== " ")
+				if (board[col][row] == board[row + i][col] || board[col][row]== " ")
 					match = false;
 			}
 			if (match) return true;
@@ -82,7 +83,7 @@ bool Gomoku::done() {
 		for (int row = 0; row < 14; row++) {
 			{
 				for (int i = 0; i < 5; i++) {
-					if (board[row][col] != board[row + i][col + i] || board[row][col] == " ")
+					if (board[col][row] != board[col + i][row + i] || board[col][row] == " ")
 					match = false;
 				}
 				if (match) { return true; }
@@ -96,6 +97,7 @@ bool Gomoku::done() {
 			for (int i = 0; i < 5; i++) {
 				if (board[row][col] != board[row - i][col - i] || board[row][col] == " ")
 					match = false;
+					break;
 			}
 			if (match) return true;
 		}
@@ -104,8 +106,8 @@ bool Gomoku::done() {
 }
 
 bool Gomoku::draw() {
-	for (int i = 0; i < 19; ++i) {
-		for (int j = 0; j < 19; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
+	for (int i = 0; i < 14; ++i) {
+		for (int j = 0; j < 14; ++j) { //we'll just check and see if there are open spaces on the board, if so then we're not done nor is there a draw
 			if (board[i][j] == " ") {
 				cout << board[i][j] << endl;
 				return false;
