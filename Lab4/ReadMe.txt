@@ -40,3 +40,5 @@ O quit the game in 2 turns!
 Testing Gomuku:
 The done function refuses to work at this current point. 
 We're fairly sure that draw() works, and obviously turn works.
+
+Quit also quits, much like TicTacToe, and it correctly displays the board and moves
