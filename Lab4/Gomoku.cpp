@@ -56,50 +56,86 @@ ostream& operator<<(ostream& cout, Gomoku const& gm) {
 bool Gomoku::done() {
 
 	//check each row:
-	bool match = true;
-	for (int row = 0; row < 19; row++) {
-		for (int col = 0; col < 14; col++)
-		{
-			for (int i = 0; i < 5; i++) {
-				if (board[col][row] == board[row][col + i] ||  board[col][row] != " ")
-					match = false;
+	bool match = false;
+	string val;
+	for (int row = 1; row < 19; row++) {
+		for (int col = 1; col < 15; col++){
+			val = board[row][col];
+			for (int i = 1; i < 5; i++) {
+				match = false;
+				if (val == board[row][col + i] && val != " ") {
+					match = true;
+				}
+				if (!match) {
+					break;
+				}
+				else { continue; }
 			}
-			if (match) return true;
+			if (match) {
+				return true;
+			}
 		}
 	}
+
 	//check each column:
 	for (int col = 0; col < 19; col++) {
 		for (int row = 0; row < 14; row++)
 		{
-			for (int i = 0; i < 5; i++) {
-				if (board[col][row] == board[row + i][col] || board[col][row]== " ")
-					match = false;
+			val = board[row][col];
+			for (int i = 1; i < 5; i++) {
+				match = false;
+				if (val == board[row+i][col] && val != " ") {
+					match = true;
+				}
+				if (!match) {
+					break;
+				}
+				else { continue; }
 			}
-			if (match) return true;
+			if (match) {
+				return true;
+			}
 		}
 	}
 	//check diagonal lines from top-left to bottom-right
 	for (int col = 0; col < 14; col++) {
 		for (int row = 0; row < 14; row++) {
 			{
-				for (int i = 0; i < 5; i++) {
-					if (board[col][row] != board[col + i][row + i] || board[col][row] == " ")
+				val = board[row][col];
+				for (int i = 1; i < 5; i++) {
 					match = false;
+					if (val == board[row + i][col + i] && val != " ") {
+						match = true;
+					}
+					if (!match) {
+						break;
+					}
+					else { continue; }
 				}
-				if (match) { return true; }
+				if (match) {
+					return true;
+				}
 			}
 		}
 	}
 	//lastly check diagonal lines from top-right to bottom-left
 	for (int col = 19; col > 4; --col) {
-		for (int row = 19; row > 4 ; --row)
+		for (int row = 0; row < 14 ; ++row)
 		{
-			for (int i = 0; i < 5; i++) {
-				if (board[row][col] != board[row - i][col - i] || board[row][col] == " ")
-					match = false;
+			val = board[row][col];
+			for (int i = 1; i < 5; i++) {
+				match = false;
+				if (val == board[row + i][col - i] && val != " ") {
+					match = true;
+				}
+				if (!match) {
 					break;
+				}
+				else { continue; }
 			}
-			if (match) return true;
+			if (match) {
+				return true;
+			}
 		}
 	}
 	return false;
