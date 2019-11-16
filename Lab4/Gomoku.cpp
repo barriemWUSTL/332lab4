@@ -137,7 +137,7 @@ int Gomoku::turn() {
 	lastRow = r;
 	lastCol = c;
 	lastPiece = player;
-	board[r][c] = lastPiece; //place piece on board
+	board[c][r] = lastPiece; //place piece on board
 	print(); //print game board
 	cout << " " << endl;
 	if (player[pieceTurnIndex] == x) //add move to list of move for correct piece
