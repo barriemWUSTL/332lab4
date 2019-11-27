@@ -1,10 +1,26 @@
-Grader's name:
-grader's initials(used to mark comments in your code):
-Grader's email:
+Grader's name: Matheus Bustamante
+grader's initials(used to mark comments in your code): MB
+Grader's email: mbustamante@wustl.edu
 
-Grade: /100
+Grade: 87/100
 
 Deductions: 
 The grader may leave comments throughout your graded code files. 
 Please search for the grader's initials above within you lab to find
 additional comments and feedback.
+
+-5 Draw function is coded to simply wait until the board is full
+In Gomoku.cpp
+
+-2 Warnings
+In Gomoku.cpp warning C4018:  '<': signed/unsigned mismatch
+In TicTacToe.cpp  warning C4018:  '<': signed/unsigned mismatch
+
+-3 Leaving commented-out sections of code in the header/source file
+In GameBase.h
+In Lab4.cpp line 11
+In GameBase.cpp line 131
+
+-3 Lots of hard coded constants
+
+
